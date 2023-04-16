@@ -32,6 +32,14 @@ begin
 	#using DifferentialEquations
 end
 
+# ╔═╡ e04ba02d-b044-4137-bffb-cc7cb9c3a0b5
+PlutoUI.TableOfContents(depth=3, title="")
+
+# ╔═╡ dc9d9f22-0592-4168-a403-afb16cfa0c42
+md"""
+# Solver for Heterogeneous Catalysis
+"""
+
 # ╔═╡ 40dc1e16-ecf9-435b-8272-c94bc303bec5
 md"""
 ## Grid
@@ -411,7 +419,7 @@ function compute_productionrateB(sys, tsol)
 
 	# Alternative calculation
 	tf 		= TestFunctionFactory(sys)
-	Tout 	= testfunction(tf, [2], [3, 4])
+	Tout 	= testfunction(tf, [2, 4], [3])
 	Iout 	= integrate(sys, Tout, tsol[:, :, end], tsol[:, :, end - 1], tsol.t[end] - tsol.t[end - 1])
 	fluxB_alt = Iout[idB]
 
@@ -425,6 +433,11 @@ pb = compute_productionrateB(sys, tsol)
 
 # ╔═╡ f95ed529-fe7e-443f-9578-f1b8da779dad
 Markdown.parse("__The production rate of the species B is ``p_B`` = $(@sprintf "%.4f" pb) in the stationary state for horizontal velocity ``v_x = ``$(vx) and fraction of available catalytic sites ``S = ``$(S).__")
+
+# ╔═╡ 6eaac634-6a88-4edd-aadf-fe23c1b01d66
+md"""
+# Tests
+"""
 
 # ╔═╡ f3ab8364-8f10-4c02-a7d6-854f055d11c5
 md"""
@@ -2060,6 +2073,8 @@ version = "17.4.0+0"
 
 # ╔═╡ Cell order:
 # ╠═25c86226-be8b-11ed-0611-dd2967a6d7d8
+# ╠═e04ba02d-b044-4137-bffb-cc7cb9c3a0b5
+# ╟─dc9d9f22-0592-4168-a403-afb16cfa0c42
 # ╟─40dc1e16-ecf9-435b-8272-c94bc303bec5
 # ╠═ceebef24-a96c-4253-955e-6ed7b6f9f070
 # ╠═8206d5f8-b953-4bc2-b9ce-758d62ab22cf
@@ -2095,6 +2110,7 @@ version = "17.4.0+0"
 # ╠═ea45fe39-1f4e-4a6f-b0c0-17f02b96044f
 # ╠═19f07991-ff8a-499e-9d63-b73cde9fbf74
 # ╟─f95ed529-fe7e-443f-9578-f1b8da779dad
+# ╟─6eaac634-6a88-4edd-aadf-fe23c1b01d66
 # ╟─f3ab8364-8f10-4c02-a7d6-854f055d11c5
 # ╠═14c04f9b-27b2-4638-a6ee-414cb6bd993e
 # ╟─e9b07b6f-2b47-478a-a65e-3473e6554ced
